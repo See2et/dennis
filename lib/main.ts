@@ -1,7 +1,15 @@
-import type { Config } from "../lib/interfaces.ts";
+import type { ConfigJson } from "../lib/interfaces.ts";
 import { sleep } from "../lib/sleep.ts";
+import configJson from "../config.json" assert { type: "json" };
 
-const config: Config = JSON.parse(await Deno.readTextFile("./config.json"));
+const isConfigJson = (item: unknown): item is ConfigJson => {
+  const value = item as ConfigJson;
+  if (typeof value.coatSize !== "number") return false;
+  if (typeof value.paddleReach !== "number") return false;
+  return true;
+};
+const config = isConfigJson(configJson) ? configJson : null;
+if (config === null) throw new Error("config.json inclueds invalid values.");
 const coatSize = config.coatSize;
 const paddleReach = config.paddleReach;
 let entered = false;
