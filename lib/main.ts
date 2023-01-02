@@ -70,7 +70,7 @@ const draw = (xCoord: number, speed: number, score: number) => {
   const space = [...new Array(coatSize)]
     .map((_, i) => {
       if (i === 0 || i === coatSize - 1) return "|";
-      if (i === ballLocation && entered) {
+      if (i === ballLocation) {
         return "@";
       }
       return " ";
