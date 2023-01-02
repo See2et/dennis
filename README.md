@@ -33,5 +33,5 @@ dennis
 
     Then copy
     `/Users/[user name]/Library/Caches/deno/deps/https/raw.githubusercontent.com/`,
-    and do `rm [dirname which you copied] -rf`. It means deleting cache about
+    and do `rm -rf [dirname which you copied]`. It means deleting caches about
     dennis.
