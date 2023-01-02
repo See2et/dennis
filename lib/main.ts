@@ -71,8 +71,6 @@ const draw = (xCoord: number, speed: number, score: number) => {
     .map((_, i) => {
       if (i === 0 || i === coatSize - 1) return "|";
       if (i === ballLocation && entered) {
-        return "O";
-      } else if (i === ballLocation) {
         return "@";
       }
       return " ";
