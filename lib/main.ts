@@ -73,6 +73,13 @@ const draw = (xCoord: number, speed: number, score: number) => {
       if (i === ballLocation) {
         return "@";
       }
+      if ((speed > 0 && i === ballLocation-2)||(speed < 0 && i === ballLocation+2)) {
+        return '='
+      } else if (speed > 0 && i === ballLocation-3) {
+        return "ε"
+      } else if (speed < 0 && i === ballLocation+3) {
+        return "з"
+      }
       return " ";
     }).join("");
   //  const buffer = `|${space}|`;
