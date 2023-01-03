@@ -43,7 +43,7 @@ const gameLoop = async () => {
       console.log(
         `\nDo you wanna tweet the score? Click the above url\nhttps://twitter.com/intent/tweet?text=${
           encodeURIComponent(
-            `my score is ${score}!\nthe last speed is ${speed}!\n#dennis the tennis game made with deno.\nhttps://github.com/See2et/dennis`,
+            `my score is ${score}!\nthe last speed is ${Math.abs(Math.round(speed * 10000) / 100)}!\n#dennis the tennis game made with deno.\nhttps://github.com/See2et/dennis`,
           )
         }`,
       );
