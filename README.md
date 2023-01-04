@@ -21,17 +21,9 @@ dennis
 
 ## troubleshoot
 
-- Dennis throws an error.
+- Dennis throws an error or cannnot play the recent version.
   - try do it.
 
     ```
-    $ deno info https://raw.githubusercontent.com/See2et/dennis/main/dennis.ts
-
-    local: /Users/[user name]/Library/Caches/deno/deps/https/raw.githubusercontent.com/301c1e07817799ace3d80a7ea046d3b551c95a7294d0f767ee6c80c2884822c3
-    ...
+    $ deno cache --reload https://raw.githubusercontent.com/See2et/dennis/main/dennis.ts
     ```
-
-    Then copy
-    `/Users/[user name]/Library/Caches/deno/deps/https/raw.githubusercontent.com/`,
-    and do `rm -rf [dirname which you copied]`. It means deleting caches about
-    dennis.
