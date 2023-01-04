@@ -27,8 +27,9 @@ const gameLoop = async () => {
   let xCoord = 0.0;
   let speed = 0.01;
   let score = 0;
+  let combo = 0;
   while (true) {
-    draw(xCoord, speed, score);
+    draw(xCoord, speed, score, combo);
 
     const outOfCoat = 0 > xCoord || xCoord > 1.0;
     const aroundOutOfCoat = (0.0 < xCoord && xCoord < paddleReach) ||
@@ -38,12 +39,13 @@ const gameLoop = async () => {
       if (Math.abs(speed) <= 0.1 && speed > 0) speed += 0.0005;
       if (Math.abs(speed) <= 0.1 && speed < 0) speed -= 0.0005;
       score += 100;
+      combo += 1;
     } else if (outOfCoat && !entered) {
       console.log("Game Over");
       console.log(
         `\nDo you wanna tweet the score? Click the above url\nhttps://twitter.com/intent/tweet?text=${
           encodeURIComponent(
-            `my score is ${score}!\nthe last speed is ${Math.abs(Math.round(speed * 10000) / 100)}!\n#dennis the tennis game made with deno.\nhttps://github.com/See2et/dennis`,
+            `my score is ${score}, combo is ${combo}!\nthe last speed is ${Math.abs(Math.round(speed * 10000) / 100)}!\n#dennis the tennis game made with deno.\nhttps://github.com/See2et/dennis`,
           )
         }`,
       );
@@ -65,7 +67,7 @@ const inputLoop = async () => {
   }
 };
 
-const draw = (xCoord: number, speed: number, score: number) => {
+const draw = (xCoord: number, speed: number, score: number, combo: number) => {
   const ballLocation = Math.round(coatSize * xCoord);
   const space = [...new Array(coatSize)]
     .map((_, i) => {
@@ -85,6 +87,7 @@ const draw = (xCoord: number, speed: number, score: number) => {
   //  const buffer = `|${space}|`;
   console.log(`\x1B[1;1H
   score:${score}
+  combo:${combo}
   speed:${Math.abs(Math.round(speed * 10000) / 100)}
   ${space}
     `);
