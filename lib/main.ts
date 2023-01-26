@@ -19,6 +19,7 @@ export const main = () => {
     console.log("v1.0");
     Deno.exit();
   }
+  console.clear();
   gameLoop();
   inputLoop();
 };
@@ -61,9 +62,18 @@ const gameLoop = async () => {
 };
 
 const inputLoop = async () => {
-  for await (const _ of Deno.stdin.readable) {
+  await Deno.stdin.read(new Uint8Array(1));
+  entered = true;
+  for (;;) {
+    await waitForInput(Date.now(), 850);
     entered = true;
-    await sleep(750);
+  }
+};
+
+const waitForInput = async (current: number, ignoreTime: number) => {
+  for (;;) {
+    await Deno.stdin.read(new Uint8Array(1));
+    if (Date.now() - current > ignoreTime) return;
   }
 };
 
