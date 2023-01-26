@@ -65,15 +65,15 @@ const inputLoop = async () => {
   await Deno.stdin.read(new Uint8Array(1));
   entered = true;
   for (;;) {
-    await waitForInput(Date.now(), 850);
+    await waitForInput(Date.now() + 850);
     entered = true;
   }
 };
 
-const waitForInput = async (current: number, ignoreTime: number) => {
+const waitForInput = async (gtTime: number) => {
   for (;;) {
     await Deno.stdin.read(new Uint8Array(1));
-    if (Date.now() - current > ignoreTime) return;
+    if (Date.now() > gtTime) return;
   }
 };
 
